@@ -1,6 +1,6 @@
 import { INode, INodeData, INodeParams } from '../../../src/Interface'
 import { getBaseClasses } from '../../../src/utils'
-import { AIPluginTool } from 'langchain/tools'
+import { AIPluginTool, AIPluginToolParams } from 'langchain/tools'
 
 class OpenAPITools implements INode {
   label: string
@@ -16,13 +16,13 @@ class OpenAPITools implements INode {
     this.label = 'OpenAPI Tool'
     this.name = 'openapi'
     this.type = 'OpenAPI'
-    this.icon = 'serpapi.png'
+    this.icon = 'openapi.png'
     this.category = 'Tools'
     this.description = 'Wrapper around OpenAPI tool - a tool for generating OpenAPI specifications for APIs'
     this.inputs = [
       {
-        label: 'API Specification URL',
-        name: 'apiSpecUrl',
+        label: 'API Specification',
+        name: 'apiSpec',
         type: 'string',
       },
     ]
@@ -30,8 +30,15 @@ class OpenAPITools implements INode {
   }
 
   async init(nodeData: INodeData): Promise<any> {
-    const apiSpecUrl = nodeData.inputs?.apiSpecUrl as string
-    return AIPluginTool.fromPluginUrl(apiSpecUrl)
+    const apiSpec = nodeData.inputs?.apiSpec as string
+
+    const toolParams: AIPluginToolParams = {
+      name: 'OpenAPI Tool',
+      description: 'This tool generates an OpenAPI specification for an API',
+      apiSpec: apiSpec,
+    }
+
+    return new AIPluginTool(toolParams)
   }
 }
 
