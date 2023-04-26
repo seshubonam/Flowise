@@ -34,7 +34,7 @@ export class OpenAPI_Tool implements INode, AIPluginToolParams {
 
     this.label = this._name;
     this.type = 'OpenAPI';
-    this.icon = 'openapi.png';
+    this.icon = 'serp.png';
     this.category = 'Tools';
     this.inputs = [
       // Define any input parameters needed for the tool
