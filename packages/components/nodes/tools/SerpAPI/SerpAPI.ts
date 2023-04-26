@@ -1,6 +1,6 @@
 import { INode, INodeData, INodeParams } from '../../../src/Interface'
 import { getBaseClasses } from '../../../src/utils'
-import { AIPluginTool } from './path/to/AIPluginTool'
+import { AIPluginTool } from 'langchain/tools'
 
 class OpenAPITools implements INode {
   label: string
