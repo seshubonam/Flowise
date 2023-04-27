@@ -2,7 +2,7 @@ import { INode, INodeData, INodeParams } from '../../../src/Interface'
 import { getBaseClasses } from '../../../src/utils'
 import { AIPluginTool } from 'langchain/tools'
 
-class OpenAPITools implements INode {
+class OpenAPITool implements INode {
   label: string
   name: string
   description: string
@@ -32,7 +32,7 @@ class OpenAPITools implements INode {
   async init(nodeData: INodeData): Promise<any> {
     const apiSpec = nodeData.inputs?.apiSpec as string
 
-    const toolParams: AIPluginToolParams = {
+    const toolParams = {
       name: 'OpenAPI Tool',
       description: 'This tool generates an OpenAPI specification for an API',
       apiSpec: apiSpec,
@@ -42,4 +42,4 @@ class OpenAPITools implements INode {
   }
 }
 
-module.exports = { nodeClass: OpenAPITools }
+module.exports = { nodeClass: OpenAPITool }
